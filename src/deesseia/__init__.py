@@ -10,10 +10,12 @@ from deesseia.core.base.cleaner import BaseCleaner
 from deesseia.core.base.inspector import BaseDataInspector
 from deesseia.core.base.loader import BaseDataLoader
 from deesseia.core.base.validator import BaseValidator
+from deesseia.utils.fake_data import FakeDataGenerator
 
 __all__ = [
     "BaseCleaner",
     "BaseDataInspector",
     "BaseDataLoader",
     "BaseValidator",
+    "FakeDataGenerator",
 ]
