@@ -10,6 +10,7 @@ from deesseia.core.base.cleaner import BaseCleaner
 from deesseia.core.base.inspector import BaseDataInspector
 from deesseia.core.base.loader import BaseDataLoader
 from deesseia.core.base.validator import BaseValidator
+from deesseia.core.inspector import DataInspector
 from deesseia.core.loader import DataLoader
 from deesseia.utils.fake_data import FakeDataGenerator
 
@@ -18,6 +19,7 @@ __all__ = [
     "BaseDataInspector",
     "BaseDataLoader",
     "BaseValidator",
+    "DataInspector",
     "DataLoader",
     "FakeDataGenerator",
 ]
