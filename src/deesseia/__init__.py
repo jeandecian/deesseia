@@ -13,6 +13,7 @@ from deesseia.core.base.validator import BaseValidator
 from deesseia.core.cleaner import Cleaner
 from deesseia.core.inspector import DataInspector
 from deesseia.core.loader import DataLoader
+from deesseia.core.validator import Validator
 from deesseia.utils.fake_data import FakeDataGenerator
 
 __all__ = [
@@ -24,4 +25,5 @@ __all__ = [
     "DataInspector",
     "DataLoader",
     "FakeDataGenerator",
+    "Validator",
 ]
