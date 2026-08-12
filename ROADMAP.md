@@ -1,39 +1,44 @@
 # Roadmap
 
-## v1.x.x — Foundations
+## v1.x.x - Foundations
 
 Building the essential foundation for any data science project.
 
-### Version 1.0.0 — Core Foundation
+### Version 1.0.0 - Core Foundation
 
 **Phase**: Foundations
 
 **Focus**: Data loading, inspection, cleaning, validation
 
-**Status**: In Development
+**Status**: Released
 
 **Key Features**:
 
-- Data loading (CSV, Excel, JSON, Parquet, SQL)
+- Data loading (CSV, JSON, Parquet, SQL)
 - Data inspection (summary, head, tail, shape, dtypes, memory)
 - Data cleaning (missing values, duplicates, outliers, type casting)
 - Schema validation
 - Fake data generator for testing
 
+**Deferred to v1.1.0**:
+
+- Data loading (Excel)
+
 ---
 
-### Version 1.1.0 — Feature Scaling & Encoding
+### Version 1.1.0 - Feature Scaling & Encoding
 
 **Phase**: Foundations
 
 **Focus**: Scaling and encoding features for machine learning
 
-**Status**: Planned
+**Status**: In Development
 
 **Key Features**:
 
 - Feature scaling (MinMax, Standard, Robust)
 - Encoding (label, one-hot, target, frequency)
+- Data loading (Excel) (v1.0.0)
 
 ---
 

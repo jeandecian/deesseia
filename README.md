@@ -78,7 +78,20 @@ With optional dependencies:
 
 For development:
 
-> Coming soon
+```bash
+# 1. Create virtual environment
+python -m venv .venv
+
+# 2. Activate it
+# On macOS/Linux:
+source .venv/bin/activate
+
+# On Windows:
+.venv\Scripts\activate
+
+# 3. Install the package in development mode with dev dependencies
+pip install -e ".[dev]"
+```
 
 ## Quick Start
 
