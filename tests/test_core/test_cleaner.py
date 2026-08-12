@@ -33,6 +33,15 @@ class TestCleaner:
 
         assert not result[numeric_cols].isnull().any().any()
 
+    def test_handle_missing_mode(self, sample_dataframe_with_missing: pd.DataFrame):
+        """Test missing value imputation with mode."""
+
+        cleaner: Cleaner = Cleaner(sample_dataframe_with_missing)
+        result: pd.DataFrame = cleaner.handle_missing(strategy="mode")
+
+        # col1: [1, 2, 4, 5] all appear once, first mode is 1
+        assert result["col1"].iloc[2] == 1.0
+
     def test_handle_missing_ffill(self, sample_dataframe_with_missing: pd.DataFrame):
         """Test missing value imputation with forward fill."""
 
@@ -60,6 +69,19 @@ class TestCleaner:
 
         assert len(result) == 3  # Kept rows: 1, 3, 4 = 3 rows
         assert not result[numeric_cols].isnull().any().any()
+
+    def test_handle_missing_with_nonexistent_column(
+        self, sample_dataframe_with_missing: pd.DataFrame
+    ):
+        """Test handling missing values with a column that doesn't exist."""
+
+        cleaner: Cleaner = Cleaner(sample_dataframe_with_missing)
+        result: pd.DataFrame = cleaner.handle_missing(
+            strategy="mean", columns=["col1", "nonexistent_column"]
+        )
+
+        assert not result["col1"].isnull().any()
+        assert result["col2"].isnull().any()
 
     def test_drop_duplicates(self, sample_dataframe_with_duplicates: pd.DataFrame):
         """Test duplicate removal."""
