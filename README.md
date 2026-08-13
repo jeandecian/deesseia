@@ -70,7 +70,9 @@ A detailed roadmap with all versions, phases, and key features is available in [
 
 ## Installation
 
-> Coming soon - will be available via `pip install deesseia` after the v0.1.0 release.
+```bash
+pip install deesseia
+```
 
 With optional dependencies:
 
@@ -95,7 +97,24 @@ pip install -e ".[dev]"
 
 ## Quick Start
 
-Coming soon
+```python
+import deesseia as ds
+
+# Load data
+df = ds.DataLoader.from_csv("data.csv")
+
+# Clean data
+cleaner = ds.Cleaner(df)
+df = cleaner.handle_missing("mean")
+
+# Inspect data
+inspector = ds.DataInspector()
+summary = inspector.summary(df)
+
+# Validate data
+validator = ds.Validator()
+errors = validator.validate_schema(df, {"id": "int64", "name": "object"})
+```
 
 ## Contributing
 
@@ -103,7 +122,7 @@ We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guid
 
 ## Documentation
 
-Comprehensive documentation is under active development and will be available at [deesseia.readthedocs.io](https://deesseia.readthedocs.io) **with the v0.1.0 release**.
+Comprehensive documentation is available at [deesseia.readthedocs.io](https://deesseia.readthedocs.io).
 
 ## License
 
