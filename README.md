@@ -3,6 +3,10 @@
 > **Deesseia** from the French *déesse* (goddess), pronounced like the letters **D-S**.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Documentation](https://img.shields.io/badge/docs-readthedocs-blue.svg)](https://deesseia.readthedocs.io)
+[![PyPI version](https://badge.fury.io/py/deesseia.svg)](https://badge.fury.io/py/deesseia)
+[![Python versions](https://img.shields.io/pypi/pyversions/deesseia.svg)](https://pypi.org/project/deesseia/)
+[![CI](https://github.com/jeandecian/deesseia/actions/workflows/ci.yml/badge.svg)](https://github.com/jeandecian/deesseia/actions)
 
 ## Vision
 
