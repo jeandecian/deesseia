@@ -1,0 +1,48 @@
+site_name: Deesseia
+site_description: Goddess of Data Science
+site_url: https://deesseia.readthedocs.io
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - search.highlight
+    - content.code.copy
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+
+repo_url: https://github.com/jeandecian/deesseia
+repo_name: jeandecian/deesseia
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - API Reference:
+      - Core: api/core.md
+      - Utils: api/utils.md
+  - Contributing: contributing.md
+  - Changelog: changelog.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - tables
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [src]
+          options:
+            show_root_heading: true
+            show_source: false
+            docstring_style: google
+            merge_init_into_class: true
+            show_submodules: true
