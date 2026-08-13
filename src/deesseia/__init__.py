@@ -14,6 +14,7 @@ from deesseia.core.cleaner import Cleaner
 from deesseia.core.inspector import DataInspector
 from deesseia.core.loader import DataLoader
 from deesseia.core.validator import Validator
+from deesseia.preprocess.encoder import Encoder
 from deesseia.preprocess.scaler import Scaler
 from deesseia.utils.fake_data import FakeDataGenerator
 
@@ -25,6 +26,7 @@ __all__ = [
     "Cleaner",
     "DataInspector",
     "DataLoader",
+    "Encoder",
     "FakeDataGenerator",
     "Scaler",
     "Validator",
