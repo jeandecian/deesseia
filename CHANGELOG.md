@@ -39,3 +39,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Added** `Validator`: Validate data with schema validation, missing value checks, and duplicate detection
 - **Added** `FakeDataGenerator`: Generate synthetic numeric, categorical, mixed, and missing-value datasets for testing
 - **Added** Comprehensive test suite with pytest and coverage reporting
+
+## [1.1.0](https://github.com/jeandecian/deesseia/releases/tag/v1.1.0) - 2026-08-15
+
+- **Added** `Scaler`: Feature scaling methods including MinMax, Standard, Robust, MaxAbs, and log transform
+- **Added** `Encoder`: Categorical encoding methods including label, one-hot, target, frequency, and ordinal encoding
+- **Added** `DataLoader.from_excel`: Load data from Excel files

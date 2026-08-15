@@ -47,6 +47,25 @@ class DataLoader(BaseDataLoader):
         )
 
     @staticmethod
+    def from_excel(
+        filepath: str,
+        sheet_name: str | int = 0,
+        **kwargs: Any,
+    ) -> pd.DataFrame:
+        """Load data from Excel file.
+
+        Args:
+            filepath: Path to the Excel file.
+            sheet_name: Sheet name or index to load.
+            **kwargs: Additional arguments passed to pandas.read_excel.
+
+        Returns:
+            DataFrame containing the loaded data.
+        """
+
+        return pd.read_excel(filepath, sheet_name=sheet_name, **kwargs)  # type: ignore
+
+    @staticmethod
     def from_json(
         filepath: str,
         orient: Literal[
