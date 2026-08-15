@@ -32,7 +32,7 @@ Building the essential foundation for any data science project.
 
 **Focus**: Scaling and encoding features for machine learning
 
-**Status**: In Development
+**Status**: Released
 
 **Key Features**:
 
@@ -42,13 +42,13 @@ Building the essential foundation for any data science project.
 
 ---
 
-### Version 1.2.0 — Imputation & Feature Creation
+### Version 1.2.0 - Imputation & Feature Creation
 
 **Phase**: Foundations
 
 **Focus**: Handling missing values and creating new features
 
-**Status**: Planned
+**Status**: In Development
 
 **Key Features**:
 
