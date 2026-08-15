@@ -45,6 +45,47 @@ class TestDataLoader:
 
         assert df["col1"].dtype == "float64"
 
+    def test_from_excel(self, tmp_path: Path):
+        """Test loading Excel file."""
+
+        excel_path = tmp_path / "test.xlsx"
+        pd.DataFrame({"col1": [1, 2], "col2": ["a", "b"]}).to_excel(  # type: ignore
+            excel_path, index=False
+        )
+
+        df = DataLoader.from_excel(str(excel_path))
+
+        assert isinstance(df, pd.DataFrame)
+        assert df.shape == (2, 2)
+
+    def test_from_excel_with_sheet_name(self, tmp_path: Path):
+        """Test loading Excel file with specific sheet."""
+
+        excel_path = tmp_path / "test.xlsx"
+        with pd.ExcelWriter(excel_path) as writer:  # type: ignore
+            pd.DataFrame({"col1": [1, 2]}).to_excel(  # type: ignore
+                writer, sheet_name="Sheet1", index=False
+            )
+            pd.DataFrame({"col2": [3, 4]}).to_excel(  # type: ignore
+                writer, sheet_name="Sheet2", index=False
+            )
+
+        df = DataLoader.from_excel(str(excel_path), sheet_name="Sheet2")
+
+        assert list(df.columns) == ["col2"]
+
+    def test_from_excel_with_kwargs(self, tmp_path: Path):
+        """Test loading Excel with additional pandas kwargs."""
+
+        excel_path = tmp_path / "test.xlsx"
+        pd.DataFrame({"col1": [1, 2], "col2": ["a", "b"]}).to_excel(  # type: ignore
+            excel_path, index=False
+        )
+
+        df = DataLoader.from_excel(str(excel_path), dtype={"col1": "float64"})
+
+        assert df["col1"].dtype == "float64"
+
     def test_from_json(self, tmp_path: Path):
         """Test loading JSON file."""
 
