@@ -7,29 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/jeandecian/deesseia/compare/) - YYYY-MM-DD
 
-### Added
-
-- None
-
-### Changed
-
-- None
-
-### Deprecated
-
-- None
-
-### Removed
-
-- None
-
-### Fixed
-
-- None
-
-### Security
-
-- None
+- **Added** None
+- **Changed** None
+- **Deprecated** None
+- **Removed** None
+- **Fixed** None
+- **Security** None
 
 ## [1.0.0](https://github.com/jeandecian/deesseia/releases/tag/v1.0.0) - 2026-08-12
 
