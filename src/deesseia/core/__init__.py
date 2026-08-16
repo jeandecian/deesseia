@@ -5,6 +5,7 @@ from deesseia.core.base.inspector import BaseDataInspector
 from deesseia.core.base.loader import BaseDataLoader
 from deesseia.core.base.validator import BaseValidator
 from deesseia.core.cleaner import Cleaner
+from deesseia.core.feature import FeatureCreator
 from deesseia.core.inspector import DataInspector
 from deesseia.core.loader import DataLoader
 from deesseia.core.validator import Validator
@@ -17,5 +18,6 @@ __all__ = [
     "Cleaner",
     "DataInspector",
     "DataLoader",
+    "FeatureCreator",
     "Validator",
 ]

@@ -48,7 +48,7 @@ Building the essential foundation for any data science project.
 
 **Focus**: Handling missing values and creating new features
 
-**Status**: In Development
+**Status**: Released
 
 **Key Features**:
 
@@ -58,13 +58,13 @@ Building the essential foundation for any data science project.
 
 ---
 
-### Version 1.3.0 — Data Splitting & Validation
+### Version 1.3.0 - Data Splitting & Validation
 
 **Phase**: Foundations
 
 **Focus**: Preparing data for model training and evaluation
 
-**Status**: Planned
+**Status**: In Development
 
 **Key Features**:
 
