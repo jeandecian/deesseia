@@ -254,6 +254,45 @@ def sample_dataframe_no_missing_target() -> pd.DataFrame:
 
 
 @pytest.fixture
+def sample_dataframe_poly() -> pd.DataFrame:
+    """Return a sample DataFrame for polynomial features tests."""
+
+    return pd.DataFrame(
+        {
+            "x": [1, 2, 3, 4],
+            "y": [2, 4, 6, 8],
+        }
+    )
+
+
+@pytest.fixture
+def sample_dataframe_poly_three() -> pd.DataFrame:
+    """Return a sample DataFrame with three columns for interaction tests."""
+
+    return pd.DataFrame(
+        {
+            "x": [1, 2, 3],
+            "y": [4, 5, 6],
+            "z": [7, 8, 9],
+        }
+    )
+
+
+@pytest.fixture
+def sample_dataframe_single_col() -> pd.DataFrame:
+    """Return a sample DataFrame with a single column."""
+
+    return pd.DataFrame({"x": [1, 2, 3]})
+
+
+@pytest.fixture
+def sample_dataframe_non_numeric() -> pd.DataFrame:
+    """Return a sample DataFrame with non-numeric columns only."""
+
+    return pd.DataFrame({"a": ["x", "y", "z"]})
+
+
+@pytest.fixture
 def fake_data_generator() -> FakeDataGenerator:
     """Return a seeded FakeDataGenerator for reproducible tests."""
 
