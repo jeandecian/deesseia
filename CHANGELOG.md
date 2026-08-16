@@ -14,6 +14,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Fixed** None
 - **Security** None
 
+## [1.2.0](https://github.com/jeandecian/deesseia/releases/tag/v1.2.0) - 2026-08-15
+
+- **Added** `Imputer`: Missing value imputation with strategies including mean, median, mode, constant, KNN, and model-based imputation
+- **Added** `FeatureCreator`: Polynomial features and interaction features for feature engineering
+
 ## [1.1.0](https://github.com/jeandecian/deesseia/releases/tag/v1.1.0) - 2026-08-15
 
 - **Added** `Scaler`: Feature scaling methods including MinMax, Standard, Robust, MaxAbs, and log transform
