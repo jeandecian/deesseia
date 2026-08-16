@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 import pytest
 
@@ -149,6 +150,105 @@ def sample_dataframe_ordinal() -> pd.DataFrame:
         {
             "education": ["high_school", "bachelor", "master", "phd", "bachelor"],
             "income": ["low", "medium", "high", "high", "medium"],
+        }
+    )
+
+
+@pytest.fixture
+def sample_dataframe_for_imputation() -> pd.DataFrame:
+    """Return a sample DataFrame for imputation tests."""
+
+    return pd.DataFrame(
+        {
+            "a": [1, 2, np.nan, 4, 5],
+            "b": [10, 20, 30, 40, 50],
+            "c": [100, 200, 300, 400, 500],
+        }
+    )
+
+
+@pytest.fixture
+def sample_dataframe_for_model_impute() -> pd.DataFrame:
+    """Return a sample DataFrame for model-based imputation tests."""
+
+    return pd.DataFrame(
+        {
+            "x1": [1, 2, 3, 4, 5],
+            "x2": [10, 20, 30, 40, 50],
+            "target": [100, 200, np.nan, 400, 500],
+        }
+    )
+
+
+@pytest.fixture
+def sample_dataframe_all_nan() -> pd.DataFrame:
+    """Return a sample DataFrame with a column where all values are NaN."""
+
+    return pd.DataFrame(
+        {
+            "a": [np.nan, np.nan, np.nan],
+            "b": [1, 2, 3],
+        }
+    )
+
+
+@pytest.fixture
+def sample_dataframe_only_non_numeric() -> pd.DataFrame:
+    """Return a sample DataFrame with only non-numeric columns."""
+
+    return pd.DataFrame(
+        {
+            "a": ["x", "y", "z"],
+            "b": ["p", "q", "r"],
+        }
+    )
+
+
+@pytest.fixture
+def sample_dataframe_mixed_numeric_categorical() -> pd.DataFrame:
+    """Return a sample DataFrame with mixed numeric and categorical columns."""
+
+    return pd.DataFrame(
+        {
+            "a": ["x", "y", "z"],
+            "b": [1, 2, np.nan],
+        }
+    )
+
+
+@pytest.fixture
+def sample_dataframe_single_target() -> pd.DataFrame:
+    """Return a sample DataFrame with only a target column."""
+
+    return pd.DataFrame(
+        {
+            "target": [1, 2, np.nan, 4, 5],
+        }
+    )
+
+
+@pytest.fixture
+def sample_dataframe_all_nan_impute() -> pd.DataFrame:
+    """Return a sample DataFrame where all values are NaN for model imputation."""
+
+    return pd.DataFrame(
+        {
+            "x1": [np.nan, np.nan, np.nan],
+            "x2": [np.nan, np.nan, np.nan],
+            "target": [np.nan, np.nan, np.nan],
+        }
+    )
+
+
+@pytest.fixture
+def sample_dataframe_no_missing_target() -> pd.DataFrame:
+    """Return a sample DataFrame with no missing values in target."""
+
+    return pd.DataFrame(
+        {
+            "x1": [1, 2, 3, 4, 5],
+            "x2": [10, 20, 30, 40, 50],
+            "target": [100, 200, 300, 400, 500],
         }
     )
 
