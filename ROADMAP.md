@@ -64,28 +64,28 @@ Building the essential foundation for any data science project.
 
 **Focus**: Preparing data for model training and evaluation
 
-**Status**: In Development
+**Status**: Released
 
 **Key Features**:
 
-- Train/validation/test split
 - Cross-validation folds (K-Fold, Stratified, Time Series)
 
 ---
 
-### Version 1.4.0 — EDA & Descriptive Statistics
+### Version 1.4.0 - EDA & Descriptive Statistics
 
 **Phase**: Foundations
 
 **Focus**: Understanding data distributions and summary statistics
 
-**Status**: Planned
+**Status**: In Development
 
 **Key Features**:
 
 - Descriptive statistics (mean, median, mode, std, quartiles, IQR)
 - Distribution analysis (histograms, KDE, boxplots)
 - Automated insights generation
+- Train/validation/test split (v1.3.0)
 
 ---
 
