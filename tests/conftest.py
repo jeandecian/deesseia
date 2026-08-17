@@ -293,6 +293,31 @@ def sample_dataframe_non_numeric() -> pd.DataFrame:
 
 
 @pytest.fixture
+def sample_dataframe_for_split() -> pd.DataFrame:
+    """Return a sample DataFrame for split tests."""
+
+    return pd.DataFrame(
+        {
+            "a": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+        }
+    )
+
+
+@pytest.fixture
+def sample_target_for_split() -> pd.Series:
+    """Return a sample target Series for split tests."""
+
+    return pd.Series([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+
+
+@pytest.fixture
+def sample_target_binary_for_split() -> pd.Series:
+    """Return a sample binary target Series for stratified split tests."""
+
+    return pd.Series([0, 0, 0, 0, 0, 1, 1, 1, 1, 1])
+
+
+@pytest.fixture
 def fake_data_generator() -> FakeDataGenerator:
     """Return a seeded FakeDataGenerator for reproducible tests."""
 

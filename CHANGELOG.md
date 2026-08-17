@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Fixed** None
 - **Security** None
 
+## [1.3.0](https://github.com/jeandecian/deesseia/releases/tag/v1.3.0) - 2026-08-17
+
+- **Added** `Splitter`: Cross-validation methods including K-Fold, Stratified K-Fold, and Time Series split
+
 ## [1.2.0](https://github.com/jeandecian/deesseia/releases/tag/v1.2.0) - 2026-08-15
 
 - **Added** `Imputer`: Missing value imputation with strategies including mean, median, mode, constant, KNN, and model-based imputation
