@@ -1,76 +1,17 @@
 # Roadmap
 
+## Released Versions
+
+| Version    | Phase       | Main Focus                    | Key Features                                                                                           | Deferred Features      |
+| ---------- | ----------- | ----------------------------- | ------------------------------------------------------------------------------------------------------ | ---------------------- |
+| **v1.0.0** | Foundations | Core Foundation               | Data loading (CSV, JSON, Parquet, SQL), data inspection, cleaning, validation, and fake data generator | —                      |
+| **v1.1.0** | Foundations | Feature Scaling & Encoding    | Feature scaling (MinMax, Standard, Robust), and encoding (label, one-hot, target, frequency)           | Excel loading (v1.0.0) |
+| **v1.2.0** | Foundations | Imputation & Feature Creation | Imputation (mean, median, KNN, model-based), polynomial features, and interaction features             | —                      |
+| **v1.3.0** | Foundations | Cross-Validation              | K-Fold, Stratified K-Fold, and Time Series split                                                       | —                      |
+
 ## v1.x.x - Foundations
 
 Building the essential foundation for any data science project.
-
-### Version 1.0.0 - Core Foundation
-
-**Phase**: Foundations
-
-**Focus**: Data loading, inspection, cleaning, validation
-
-**Status**: Released
-
-**Key Features**:
-
-- Data loading (CSV, JSON, Parquet, SQL)
-- Data inspection (summary, head, tail, shape, dtypes, memory)
-- Data cleaning (missing values, duplicates, outliers, type casting)
-- Schema validation
-- Fake data generator for testing
-
-**Deferred to v1.1.0**:
-
-- Data loading (Excel)
-
----
-
-### Version 1.1.0 - Feature Scaling & Encoding
-
-**Phase**: Foundations
-
-**Focus**: Scaling and encoding features for machine learning
-
-**Status**: Released
-
-**Key Features**:
-
-- Feature scaling (MinMax, Standard, Robust)
-- Encoding (label, one-hot, target, frequency)
-- Data loading (Excel) (v1.0.0)
-
----
-
-### Version 1.2.0 - Imputation & Feature Creation
-
-**Phase**: Foundations
-
-**Focus**: Handling missing values and creating new features
-
-**Status**: Released
-
-**Key Features**:
-
-- Imputation (mean, median, KNN, model-based)
-- Polynomial features
-- Interaction features
-
----
-
-### Version 1.3.0 - Data Splitting & Validation
-
-**Phase**: Foundations
-
-**Focus**: Preparing data for model training and evaluation
-
-**Status**: Released
-
-**Key Features**:
-
-- Cross-validation folds (K-Fold, Stratified, Time Series)
-
----
 
 ### Version 1.4.0 - EDA & Descriptive Statistics
 
