@@ -4,7 +4,7 @@ Deesseia - Goddess of Data Science.
 A comprehensive data science library that streamlines the entire data science workflow from data loading to model deployment.
 """
 
-__version__ = "1.2.0"
+__version__ = "1.3.0"
 
 from deesseia.core.base.cleaner import BaseCleaner
 from deesseia.core.base.inspector import BaseDataInspector
