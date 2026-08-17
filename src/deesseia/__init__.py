@@ -18,6 +18,7 @@ from deesseia.core.validator import Validator
 from deesseia.preprocess.encoder import Encoder
 from deesseia.preprocess.imputer import Imputer
 from deesseia.preprocess.scaler import Scaler
+from deesseia.preprocess.split import Splitter
 from deesseia.utils.fake_data import FakeDataGenerator
 
 __all__ = [
@@ -33,5 +34,6 @@ __all__ = [
     "FeatureCreator",
     "Imputer",
     "Scaler",
+    "Splitter",
     "Validator",
 ]
