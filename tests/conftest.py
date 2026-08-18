@@ -4,6 +4,10 @@ import pytest
 
 from deesseia.utils.fake_data import FakeDataGenerator
 
+# ============================================================
+# Core fixtures
+# ============================================================
+
 
 @pytest.fixture
 def sample_dataframe() -> pd.DataFrame:
@@ -46,6 +50,11 @@ def sample_dataframe_with_duplicates() -> pd.DataFrame:
     )
 
 
+# ============================================================
+# Scaling fixtures
+# ============================================================
+
+
 @pytest.fixture
 def sample_dataframe_for_scaling() -> pd.DataFrame:
     """Return a sample DataFrame for scaling tests."""
@@ -74,58 +83,21 @@ def sample_dataframe_with_outliers() -> pd.DataFrame:
 
 
 @pytest.fixture
-def sample_dataframe_single_value_column() -> pd.DataFrame:
-    """Return a sample DataFrame with a column of identical values."""
+def sample_dataframe_zero_variance() -> pd.DataFrame:
+    """Return a sample DataFrame with zero variance columns."""
 
     return pd.DataFrame(
         {
-            "a": [1, 1, 1, 1, 1],
-            "b": [1, 2, 3, 4, 5],
+            "constant": [1, 1, 1, 1, 1],
+            "normal": [10, 20, 30, 40, 50],
+            "zero_col": [0, 0, 0, 0, 0],
         }
     )
 
 
-@pytest.fixture
-def sample_dataframe_all_zeros() -> pd.DataFrame:
-    """Return a sample DataFrame with all zeros in one column."""
-
-    return pd.DataFrame(
-        {
-            "a": [0, 0, 0, 0, 0],
-            "b": [1, 2, 3, 4, 5],
-        }
-    )
-
-
-@pytest.fixture
-def sample_dataframe_for_log_transform() -> pd.DataFrame:
-    """Return a sample DataFrame for log transform tests."""
-
-    return pd.DataFrame(
-        {
-            "a": [1, 10, 100, 1000],
-            "b": [2, 4, 8, 16],
-        }
-    )
-
-
-@pytest.fixture
-def sample_dataframe_with_zeros() -> pd.DataFrame:
-    """Return a sample DataFrame with zeros for log transform tests."""
-
-    return pd.DataFrame({"a": [0, 1, 2, 3]})
-
-
-@pytest.fixture
-def sample_dataframe_zero_iqr() -> pd.DataFrame:
-    """Return a sample DataFrame with a column where IQR = 0."""
-
-    return pd.DataFrame(
-        {
-            "a": [1, 1, 1, 1, 1],  # All same, IQR = 0
-            "b": [10, 20, 30, 40, 50],
-        }
-    )
+# ============================================================
+# Encoding fixtures
+# ============================================================
 
 
 @pytest.fixture
@@ -152,6 +124,11 @@ def sample_dataframe_ordinal() -> pd.DataFrame:
             "income": ["low", "medium", "high", "high", "medium"],
         }
     )
+
+
+# ============================================================
+# Imputation fixtures
+# ============================================================
 
 
 @pytest.fixture
@@ -182,12 +159,25 @@ def sample_dataframe_for_model_impute() -> pd.DataFrame:
 
 @pytest.fixture
 def sample_dataframe_all_nan() -> pd.DataFrame:
-    """Return a sample DataFrame with a column where all values are NaN."""
+    """Return a sample DataFrame with all NaN values."""
 
     return pd.DataFrame(
         {
-            "a": [np.nan, np.nan, np.nan],
-            "b": [1, 2, 3],
+            "all_nan": [np.nan, np.nan, np.nan],
+            "normal": [1, 2, 3],
+        }
+    )
+
+
+@pytest.fixture
+def sample_dataframe_all_nan_model() -> pd.DataFrame:
+    """Return a sample DataFrame with all NaN values for model imputation."""
+
+    return pd.DataFrame(
+        {
+            "x1": [np.nan, np.nan, np.nan],
+            "x2": [np.nan, np.nan, np.nan],
+            "target": [np.nan, np.nan, np.nan],
         }
     )
 
@@ -227,30 +217,9 @@ def sample_dataframe_single_target() -> pd.DataFrame:
     )
 
 
-@pytest.fixture
-def sample_dataframe_all_nan_impute() -> pd.DataFrame:
-    """Return a sample DataFrame where all values are NaN for model imputation."""
-
-    return pd.DataFrame(
-        {
-            "x1": [np.nan, np.nan, np.nan],
-            "x2": [np.nan, np.nan, np.nan],
-            "target": [np.nan, np.nan, np.nan],
-        }
-    )
-
-
-@pytest.fixture
-def sample_dataframe_no_missing_target() -> pd.DataFrame:
-    """Return a sample DataFrame with no missing values in target."""
-
-    return pd.DataFrame(
-        {
-            "x1": [1, 2, 3, 4, 5],
-            "x2": [10, 20, 30, 40, 50],
-            "target": [100, 200, 300, 400, 500],
-        }
-    )
+# ============================================================
+# Feature creation fixtures
+# ============================================================
 
 
 @pytest.fixture
@@ -292,6 +261,30 @@ def sample_dataframe_non_numeric() -> pd.DataFrame:
     return pd.DataFrame({"a": ["x", "y", "z"]})
 
 
+# ============================================================
+# EDA fixtures
+# ============================================================
+
+
+@pytest.fixture
+def sample_dataframe_unique_values() -> pd.DataFrame:
+    """Return a sample DataFrame with all unique values."""
+
+    return pd.DataFrame({"a": [1, 2, 3, 4, 5]})
+
+
+@pytest.fixture
+def sample_dataframe_bimodal() -> pd.DataFrame:
+    """Return a sample DataFrame with bimodal distribution."""
+
+    return pd.DataFrame({"a": [1, 1, 2, 2, 3]})
+
+
+# ============================================================
+# Split fixtures
+# ============================================================
+
+
 @pytest.fixture
 def sample_dataframe_for_split() -> pd.DataFrame:
     """Return a sample DataFrame for split tests."""
@@ -315,6 +308,11 @@ def sample_target_binary_for_split() -> pd.Series:
     """Return a sample binary target Series for stratified split tests."""
 
     return pd.Series([0, 0, 0, 0, 0, 1, 1, 1, 1, 1])
+
+
+# ============================================================
+# Utility fixtures
+# ============================================================
 
 
 @pytest.fixture

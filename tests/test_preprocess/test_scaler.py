@@ -8,7 +8,9 @@ from deesseia.preprocess.scaler import Scaler
 class TestScaler:
     """Test feature scaling functionality."""
 
-    def test_minmax_scale_default(self, sample_dataframe_for_scaling: pd.DataFrame):
+    def test_minmax_scale_default(
+        self, sample_dataframe_for_scaling: pd.DataFrame
+    ) -> None:
         """Test MinMax scaling to [0, 1] range."""
 
         scaler: Scaler = Scaler()
@@ -23,7 +25,7 @@ class TestScaler:
 
     def test_minmax_scale_custom_range(
         self, sample_dataframe_for_scaling: pd.DataFrame
-    ):
+    ) -> None:
         """Test MinMax scaling to custom range."""
 
         scaler: Scaler = Scaler()
@@ -35,16 +37,16 @@ class TestScaler:
         assert result["a"].max() == 1.0
 
     def test_minmax_scale_single_value(
-        self, sample_dataframe_single_value_column: pd.DataFrame
-    ):
+        self, sample_dataframe_zero_variance: pd.DataFrame
+    ) -> None:
         """Test MinMax scaling with a column of identical values."""
 
         scaler: Scaler = Scaler()
-        result: pd.DataFrame = scaler.minmax_scale(sample_dataframe_single_value_column)
+        result: pd.DataFrame = scaler.minmax_scale(sample_dataframe_zero_variance)
 
-        assert (result["a"] == 0.0).all()
+        assert (result["constant"] == 0.0).all()
 
-    def test_standard_scale(self, sample_dataframe_for_scaling: pd.DataFrame):
+    def test_standard_scale(self, sample_dataframe_for_scaling: pd.DataFrame) -> None:
         """Test Standard scaling (zero mean, unit variance)."""
 
         scaler: Scaler = Scaler()
@@ -56,19 +58,17 @@ class TestScaler:
         assert abs(result["b"].std() - 1.0) < 1e-10
 
     def test_standard_scale_single_value(
-        self, sample_dataframe_single_value_column: pd.DataFrame
-    ):
+        self, sample_dataframe_zero_variance: pd.DataFrame
+    ) -> None:
         """Test Standard scaling with a column of identical values."""
 
         scaler: Scaler = Scaler()
-        result: pd.DataFrame = scaler.standard_scale(
-            sample_dataframe_single_value_column
-        )
+        result: pd.DataFrame = scaler.standard_scale(sample_dataframe_zero_variance)
 
-        assert (result["a"] == 0.0).all()
-        assert abs(result["b"].mean()) < 1e-10
+        assert (result["constant"] == 0.0).all()
+        assert abs(result["normal"].mean()) < 1e-10
 
-    def test_robust_scale(self, sample_dataframe_with_outliers: pd.DataFrame):
+    def test_robust_scale(self, sample_dataframe_with_outliers: pd.DataFrame) -> None:
         """Test Robust scaling (median and IQR)."""
 
         scaler: Scaler = Scaler()
@@ -79,16 +79,18 @@ class TestScaler:
         assert abs(result["b"].median()) < 1e-10
         assert abs(result["c"].median()) < 1e-10
 
-    def test_robust_scale_zero_iqr(self, sample_dataframe_zero_iqr: pd.DataFrame):
+    def test_robust_scale_zero_iqr(
+        self, sample_dataframe_zero_variance: pd.DataFrame
+    ) -> None:
         """Test Robust scaling with a column where IQR = 0."""
 
         scaler: Scaler = Scaler()
-        result: pd.DataFrame = scaler.robust_scale(sample_dataframe_zero_iqr)
+        result: pd.DataFrame = scaler.robust_scale(sample_dataframe_zero_variance)
 
-        assert (result["a"] == 0.0).all()
-        assert abs(result["b"].median()) < 1e-10
+        assert (result["constant"] == 0.0).all()
+        assert abs(result["normal"].median()) < 1e-10
 
-    def test_maxabs_scale(self, sample_dataframe_for_scaling: pd.DataFrame):
+    def test_maxabs_scale(self, sample_dataframe_for_scaling: pd.DataFrame) -> None:
         """Test MaxAbs scaling."""
 
         scaler: Scaler = Scaler()
@@ -101,47 +103,46 @@ class TestScaler:
         assert result["d"].min() == -1.0
         assert result["d"].max() == 1.0
 
-    def test_maxabs_scale_all_zeros(self, sample_dataframe_all_zeros: pd.DataFrame):
-        """Test MaxAbs scaling with all zeros."""
+    def test_maxabs_scale_all_zeros(
+        self, sample_dataframe_zero_variance: pd.DataFrame
+    ) -> None:
+        """Test MaxAbs scaling with a column of all zeros."""
 
         scaler: Scaler = Scaler()
-        result: pd.DataFrame = scaler.maxabs_scale(sample_dataframe_all_zeros)
+        result: pd.DataFrame = scaler.maxabs_scale(sample_dataframe_zero_variance)
 
-        assert (result["a"] == 0.0).all()
+        assert (result["zero_col"] == 0.0).all()
 
-    def test_log_transform(self, sample_dataframe_for_log_transform: pd.DataFrame):
+    def test_log_transform(self, sample_dataframe: pd.DataFrame) -> None:
         """Test log transformation."""
 
         scaler: Scaler = Scaler()
-        result: pd.DataFrame = scaler.log_transform(sample_dataframe_for_log_transform)
+        result: pd.DataFrame = scaler.log_transform(sample_dataframe)
 
         # Log of 1 is 0
-        assert result["a"].iloc[0] == 0.0
+        assert result["id"].iloc[0] == 0.0
 
-    def test_log_transform_with_zeros(self, sample_dataframe_with_zeros: pd.DataFrame):
+    def test_log_transform_with_zeros(self) -> None:
         """Test log transformation with zeros (should add epsilon)."""
 
+        df = pd.DataFrame({"a": [0, 1, 2, 3]})
         scaler: Scaler = Scaler()
-        result: pd.DataFrame = scaler.log_transform(sample_dataframe_with_zeros)
+        result: pd.DataFrame = scaler.log_transform(df)
 
         assert not np.isinf(result["a"]).any()
 
-    def test_log_transform_custom_base(
-        self, sample_dataframe_for_log_transform: pd.DataFrame
-    ):
+    def test_log_transform_custom_base(self, sample_dataframe: pd.DataFrame) -> None:
         """Test log transformation with custom base."""
 
         scaler: Scaler = Scaler()
-        result: pd.DataFrame = scaler.log_transform(
-            sample_dataframe_for_log_transform, base=10
-        )
+        result: pd.DataFrame = scaler.log_transform(sample_dataframe, base=10)
 
-        # Log10 of 10 is 1
-        assert result["a"].iloc[1] == 1.0
+        # Log10 of 1 is 0
+        assert result["id"].iloc[0] == 0.0
 
     def test_scaler_with_column_selection(
         self, sample_dataframe_for_scaling: pd.DataFrame
-    ):
+    ) -> None:
         """Test scaling only selected columns."""
 
         scaler: Scaler = Scaler()
@@ -157,7 +158,7 @@ class TestScaler:
 
     def test_nonexistent_column_all_methods(
         self, sample_dataframe_for_scaling: pd.DataFrame
-    ):
+    ) -> None:
         """Test that all scaling methods handle nonexistent columns gracefully."""
 
         scaler: Scaler = Scaler()
@@ -182,7 +183,7 @@ class TestScaler:
 
     def test_scaler_nonexistent_column(
         self, sample_dataframe_for_scaling: pd.DataFrame
-    ):
+    ) -> None:
         """Test scaling with a nonexistent column (should be skipped)."""
 
         scaler: Scaler = Scaler()

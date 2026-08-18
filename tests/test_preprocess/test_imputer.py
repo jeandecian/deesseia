@@ -7,7 +7,7 @@ from deesseia.preprocess.imputer import Imputer
 class TestImputer:
     """Test missing value imputation functionality."""
 
-    def test_mean_impute(self, sample_dataframe_with_missing: pd.DataFrame):
+    def test_mean_impute(self, sample_dataframe_with_missing: pd.DataFrame) -> None:
         """Test mean imputation."""
 
         imputer: Imputer = Imputer()
@@ -18,7 +18,7 @@ class TestImputer:
 
     def test_mean_impute_with_columns(
         self, sample_dataframe_with_missing: pd.DataFrame
-    ):
+    ) -> None:
         """Test mean imputation on specific columns."""
 
         imputer: Imputer = Imputer()
@@ -31,7 +31,7 @@ class TestImputer:
 
     def test_mean_impute_nonexistent_column(
         self, sample_dataframe_with_missing: pd.DataFrame
-    ):
+    ) -> None:
         """Test mean imputation with a nonexistent column."""
 
         imputer: Imputer = Imputer()
@@ -42,16 +42,16 @@ class TestImputer:
         assert result["col1"].iloc[2] == 3.0
         assert "nonexistent" not in result.columns
 
-    def test_mean_impute_all_nan(self, sample_dataframe_all_nan: pd.DataFrame):
+    def test_mean_impute_all_nan(self, sample_dataframe_all_nan: pd.DataFrame) -> None:
         """Test mean imputation with a column where all values are NaN."""
 
         imputer: Imputer = Imputer()
         result: pd.DataFrame = imputer.mean_impute(sample_dataframe_all_nan)
 
-        assert result["a"].isnull().all()
-        assert result["b"].iloc[0] == 1
+        assert result["all_nan"].isnull().all()
+        assert result["normal"].iloc[0] == 1
 
-    def test_median_impute(self, sample_dataframe_with_missing: pd.DataFrame):
+    def test_median_impute(self, sample_dataframe_with_missing: pd.DataFrame) -> None:
         """Test median imputation."""
 
         imputer: Imputer = Imputer()
@@ -62,7 +62,7 @@ class TestImputer:
 
     def test_median_impute_nonexistent_column(
         self, sample_dataframe_with_missing: pd.DataFrame
-    ):
+    ) -> None:
         """Test median imputation with a nonexistent column."""
 
         imputer: Imputer = Imputer()
@@ -73,16 +73,18 @@ class TestImputer:
         assert result["col1"].iloc[2] == 3.0
         assert "nonexistent" not in result.columns
 
-    def test_median_impute_all_nan(self, sample_dataframe_all_nan: pd.DataFrame):
+    def test_median_impute_all_nan(
+        self, sample_dataframe_all_nan: pd.DataFrame
+    ) -> None:
         """Test median imputation with a column where all values are NaN."""
 
         imputer: Imputer = Imputer()
         result: pd.DataFrame = imputer.median_impute(sample_dataframe_all_nan)
 
-        assert result["a"].isnull().all()
-        assert result["b"].iloc[0] == 1
+        assert result["all_nan"].isnull().all()
+        assert result["normal"].iloc[0] == 1
 
-    def test_mode_impute(self, sample_dataframe_with_missing: pd.DataFrame):
+    def test_mode_impute(self, sample_dataframe_with_missing: pd.DataFrame) -> None:
         """Test mode imputation."""
 
         imputer: Imputer = Imputer()
@@ -92,7 +94,7 @@ class TestImputer:
 
     def test_mode_impute_nonexistent_column(
         self, sample_dataframe_with_missing: pd.DataFrame
-    ):
+    ) -> None:
         """Test mode imputation with a nonexistent column."""
 
         imputer: Imputer = Imputer()
@@ -103,7 +105,7 @@ class TestImputer:
         assert result["col3"].iloc[3] == "a"
         assert "nonexistent" not in result.columns
 
-    def test_constant_impute(self, sample_dataframe_with_missing: pd.DataFrame):
+    def test_constant_impute(self, sample_dataframe_with_missing: pd.DataFrame) -> None:
         """Test constant imputation."""
 
         imputer: Imputer = Imputer()
@@ -116,7 +118,7 @@ class TestImputer:
 
     def test_constant_impute_with_columns(
         self, sample_dataframe_with_missing: pd.DataFrame
-    ):
+    ) -> None:
         """Test constant imputation on specific columns."""
 
         imputer: Imputer = Imputer()
@@ -129,7 +131,7 @@ class TestImputer:
 
     def test_constant_impute_nonexistent_column(
         self, sample_dataframe_with_missing: pd.DataFrame
-    ):
+    ) -> None:
         """Test constant imputation with a nonexistent column."""
 
         imputer: Imputer = Imputer()
@@ -140,7 +142,7 @@ class TestImputer:
         assert result["col1"].iloc[2] == -999
         assert "nonexistent" not in result.columns
 
-    def test_knn_impute(self, sample_dataframe_for_imputation: pd.DataFrame):
+    def test_knn_impute(self, sample_dataframe_for_imputation: pd.DataFrame) -> None:
         """Test KNN imputation."""
 
         imputer: Imputer = Imputer()
@@ -152,7 +154,7 @@ class TestImputer:
 
     def test_knn_impute_no_numeric_columns(
         self, sample_dataframe_only_non_numeric: pd.DataFrame
-    ):
+    ) -> None:
         """Test KNN imputation with no numeric columns."""
 
         imputer: Imputer = Imputer()
@@ -162,7 +164,7 @@ class TestImputer:
 
     def test_knn_impute_columns_not_numeric(
         self, sample_dataframe_mixed_numeric_categorical: pd.DataFrame
-    ):
+    ) -> None:
         """Test KNN imputation with non-numeric columns specified."""
 
         imputer: Imputer = Imputer()
@@ -175,7 +177,7 @@ class TestImputer:
 
     def test_knn_impute_columns_not_numeric_all(
         self, sample_dataframe_only_non_numeric: pd.DataFrame
-    ):
+    ) -> None:
         """Test KNN imputation with non-numeric columns specified."""
 
         imputer: Imputer = Imputer()
@@ -185,7 +187,9 @@ class TestImputer:
 
         assert result.equals(sample_dataframe_only_non_numeric)
 
-    def test_model_impute(self, sample_dataframe_for_model_impute: pd.DataFrame):
+    def test_model_impute(
+        self, sample_dataframe_for_model_impute: pd.DataFrame
+    ) -> None:
         """Test model-based imputation."""
 
         imputer: Imputer = Imputer()
@@ -198,7 +202,7 @@ class TestImputer:
 
     def test_model_impute_default_features(
         self, sample_dataframe_for_model_impute: pd.DataFrame
-    ):
+    ) -> None:
         """Test model imputation with default features (all numeric except target)."""
 
         imputer: Imputer = Imputer()
@@ -211,7 +215,7 @@ class TestImputer:
 
     def test_model_impute_missing_target_returns_original(
         self, sample_dataframe_with_missing: pd.DataFrame
-    ):
+    ) -> None:
         """Test model imputation with a missing target column returns original."""
 
         imputer: Imputer = Imputer()
@@ -223,7 +227,7 @@ class TestImputer:
 
     def test_model_impute_no_features(
         self, sample_dataframe_single_target: pd.DataFrame
-    ):
+    ) -> None:
         """Test model imputation with no features."""
 
         imputer: Imputer = Imputer()
@@ -234,32 +238,42 @@ class TestImputer:
         assert result.equals(sample_dataframe_single_target)
 
     def test_model_impute_train_data_empty(
-        self, sample_dataframe_all_nan_impute: pd.DataFrame
-    ):
+        self, sample_dataframe_all_nan: pd.DataFrame
+    ) -> None:
         """Test model imputation when training data is empty."""
 
         imputer: Imputer = Imputer()
         result: pd.DataFrame = imputer.model_impute(
-            sample_dataframe_all_nan_impute, target="target"
+            sample_dataframe_all_nan, target="target"
         )
 
-        assert result.equals(sample_dataframe_all_nan_impute)
+        assert result.equals(sample_dataframe_all_nan)
 
-    def test_model_impute_predict_data_empty(
-        self, sample_dataframe_no_missing_target: pd.DataFrame
-    ):
-        """Test model imputation when prediction data is empty (no missing values)."""
+    def test_model_impute_no_data(
+        self, sample_dataframe_all_nan_model: pd.DataFrame
+    ) -> None:
+        """Test model imputation when both train and predict data are empty."""
 
         imputer: Imputer = Imputer()
         result: pd.DataFrame = imputer.model_impute(
-            sample_dataframe_no_missing_target, target="target"
+            sample_dataframe_all_nan_model, target="target"
         )
 
-        assert result.equals(sample_dataframe_no_missing_target)
+        assert result.equals(sample_dataframe_all_nan_model)
+
+    def test_model_impute_predict_data_empty(
+        self, sample_dataframe: pd.DataFrame
+    ) -> None:
+        """Test model imputation when prediction data is empty (no missing values)."""
+
+        imputer: Imputer = Imputer()
+        result: pd.DataFrame = imputer.model_impute(sample_dataframe, target="target")
+
+        assert result.equals(sample_dataframe)
 
     def test_model_impute_custom_model(
         self, sample_dataframe_for_model_impute: pd.DataFrame
-    ):
+    ) -> None:
         """Test model imputation with custom model."""
 
         from sklearn.linear_model import Ridge
