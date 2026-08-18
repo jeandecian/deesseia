@@ -16,6 +16,7 @@ from deesseia.core.inspector import DataInspector
 from deesseia.core.loader import DataLoader
 from deesseia.core.validator import Validator
 from deesseia.eda.descriptive import DescriptiveStats
+from deesseia.eda.distributions import Distributions
 from deesseia.preprocess.encoder import Encoder
 from deesseia.preprocess.imputer import Imputer
 from deesseia.preprocess.scaler import Scaler
@@ -31,6 +32,7 @@ __all__ = [
     "DataInspector",
     "DataLoader",
     "DescriptiveStats",
+    "Distributions",
     "Encoder",
     "FakeDataGenerator",
     "FeatureCreator",
