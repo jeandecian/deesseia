@@ -280,6 +280,13 @@ def sample_dataframe_bimodal() -> pd.DataFrame:
     return pd.DataFrame({"a": [1, 1, 2, 2, 3]})
 
 
+@pytest.fixture
+def sample_dataframe_empty_series() -> pd.DataFrame:
+    """Return a sample DataFrame with an empty series (all NaN)."""
+
+    return pd.DataFrame({"a": [np.nan, np.nan, np.nan]})
+
+
 # ============================================================
 # Split fixtures
 # ============================================================
