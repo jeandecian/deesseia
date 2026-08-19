@@ -287,6 +287,103 @@ def sample_dataframe_empty_series() -> pd.DataFrame:
     return pd.DataFrame({"a": [np.nan, np.nan, np.nan]})
 
 
+@pytest.fixture
+def sample_dataframe_mixed_empty_series() -> pd.DataFrame:
+    """Return a sample DataFrame with an empty series and a normal series."""
+
+    return pd.DataFrame({"a": [np.nan, np.nan, np.nan], "b": [1, 2, 3]})
+
+
+@pytest.fixture
+def sample_dataframe_for_skew() -> pd.DataFrame:
+    """Return a sample DataFrame for skew detection tests."""
+
+    np.random.seed(42)
+
+    return pd.DataFrame(
+        {
+            "normal": np.random.normal(0, 1, 1000),
+            "right_skew": np.random.exponential(1, 1000),
+            "left_skew": -np.random.exponential(1, 1000),
+        }
+    )
+
+
+@pytest.fixture
+def sample_dataframe_for_outliers() -> pd.DataFrame:
+    """Return a sample DataFrame for outlier detection tests."""
+
+    np.random.seed(42)
+
+    return pd.DataFrame(
+        {
+            "normal": np.random.normal(0, 1, 1000),
+            "with_outliers": np.concatenate(
+                [
+                    np.random.normal(0, 1, 990),
+                    np.array([10, 11, 12, 13, 14, 15, 16, 17, 18, 19]),
+                ]
+            ),
+        }
+    )
+
+
+@pytest.fixture
+def sample_dataframe_for_correlation() -> pd.DataFrame:
+    """Return a sample DataFrame for correlation detection tests."""
+
+    np.random.seed(42)
+
+    df = pd.DataFrame(
+        {
+            "a": np.random.normal(0, 1, 100),
+            "b": np.random.normal(0, 1, 100),
+            "c": np.random.normal(0, 1, 100),
+        }
+    )
+
+    df["d"] = df["a"] * 2 + np.random.normal(0, 0.1, 100)
+
+    return df
+
+
+@pytest.fixture
+def sample_dataframe_many_correlations() -> pd.DataFrame:
+    """Return a sample DataFrame with many high correlations."""
+
+    np.random.seed(42)
+
+    df = pd.DataFrame(
+        {
+            "a": np.random.normal(0, 1, 100),
+            "b": np.random.normal(0, 1, 100),
+            "c": np.random.normal(0, 1, 100),
+            "d": np.random.normal(0, 1, 100),
+            "e": np.random.normal(0, 1, 100),
+            "f": np.random.normal(0, 1, 100),
+        }
+    )
+
+    df["g"] = df["a"] * 2 + np.random.normal(0, 0.05, 100)
+    df["h"] = df["b"] * 2 + np.random.normal(0, 0.05, 100)
+    df["i"] = df["c"] * 2 + np.random.normal(0, 0.05, 100)
+    df["j"] = df["d"] * 2 + np.random.normal(0, 0.05, 100)
+
+    return df
+
+
+@pytest.fixture
+def sample_dataframe_clean() -> pd.DataFrame:
+    """Return a clean sample DataFrame with no issues (no skew, no outliers, no correlations)."""
+
+    return pd.DataFrame(
+        {
+            "a": [1, 2, 3, 4, 5],
+            "b": [2, 4, 1, 5, 3],
+        }
+    )
+
+
 # ============================================================
 # Split fixtures
 # ============================================================
