@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "deesseia"
-version = "1.3.0"
+version = "1.4.0"
 description = "Deesseia - Goddess of Data Science"
 readme = "README.md"
 authors = [{ name = "Jean Decian", email = "jeandecian@hotmail.fr" }]
