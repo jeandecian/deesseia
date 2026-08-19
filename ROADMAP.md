@@ -2,33 +2,17 @@
 
 ## Released Versions
 
-| Version    | Phase       | Main Focus                    | Key Features                                                                                           | Deferred Features      |
-| ---------- | ----------- | ----------------------------- | ------------------------------------------------------------------------------------------------------ | ---------------------- |
-| **v1.0.0** | Foundations | Core Foundation               | Data loading (CSV, JSON, Parquet, SQL), data inspection, cleaning, validation, and fake data generator | —                      |
-| **v1.1.0** | Foundations | Feature Scaling & Encoding    | Feature scaling (MinMax, Standard, Robust), and encoding (label, one-hot, target, frequency)           | Excel loading (v1.0.0) |
-| **v1.2.0** | Foundations | Imputation & Feature Creation | Imputation (mean, median, KNN, model-based), polynomial features, and interaction features             | —                      |
-| **v1.3.0** | Foundations | Cross-Validation              | K-Fold, Stratified K-Fold, and Time Series split                                                       | —                      |
+| Version    | Phase       | Main Focus                    | Key Features                                                                                                                                           | Deferred Features                    |
+| ---------- | ----------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------ |
+| **v1.0.0** | Foundations | Core Foundation               | Data loading (CSV, JSON, Parquet, SQL), data inspection, cleaning, validation, and fake data generator                                                 | —                                    |
+| **v1.1.0** | Foundations | Feature Scaling & Encoding    | Feature scaling (MinMax, Standard, Robust), and encoding (label, one-hot, target, frequency)                                                           | Excel loading (v1.0.0)               |
+| **v1.2.0** | Foundations | Imputation & Feature Creation | Imputation (mean, median, KNN, model-based), polynomial features, and interaction features                                                             | —                                    |
+| **v1.3.0** | Foundations | Cross-Validation              | K-Fold, Stratified K-Fold, and Time Series split                                                                                                       | —                                    |
+| **v1.4.0** | Foundations | EDA & Descriptive Statistics  | Descriptive statistics (mean, median, mode, std, quartiles, IQR), distribution analysis (histograms, KDE, boxplots), and automated insights generation | Train/validation/test split (v1.3.0) |
 
 ## v1.x.x - Foundations
 
 Building the essential foundation for any data science project.
-
-### Version 1.4.0 - EDA & Descriptive Statistics
-
-**Phase**: Foundations
-
-**Focus**: Understanding data distributions and summary statistics
-
-**Status**: In Development
-
-**Key Features**:
-
-- Descriptive statistics (mean, median, mode, std, quartiles, IQR)
-- Distribution analysis (histograms, KDE, boxplots)
-- Automated insights generation
-- Train/validation/test split (v1.3.0)
-
----
 
 ### Version 1.5.0 — Correlation & Hypothesis Testing
 
@@ -36,7 +20,7 @@ Building the essential foundation for any data science project.
 
 **Focus**: Measuring relationships and statistical testing
 
-**Status**: Planned
+**Status**: In Development
 
 **Key Features**:
 
