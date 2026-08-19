@@ -14,6 +14,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Fixed** None
 - **Security** None
 
+## [1.4.1](https://github.com/jeandecian/deesseia/releases/tag/v1.4.1) - 2026-08-19
+
+- **Added** `scipy>=1.10.0` to core dependencies
+- **Fixed** `scipy-stubs` now conditionally installed only on Python 3.12+ (package requires Python 3.12+)
+
 ## [1.4.0](https://github.com/jeandecian/deesseia/releases/tag/v1.4.0) - 2026-08-19
 
 - **Added** `DescriptiveStats`: Summary statistics including mean, median, mode, std, quartiles, IQR, skew, and kurtosis
