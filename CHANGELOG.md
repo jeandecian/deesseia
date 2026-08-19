@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **Added** `scipy>=1.10.0` to core dependencies
 - **Fixed** `scipy-stubs` now conditionally installed only on Python 3.12+ (package requires Python 3.12+)
+- **Fixed** Mypy overrides syntax from `[tool.mypy.overrides]` to `[[tool.mypy.overrides]]` (array format required by mypy)
 
 ## [1.4.0](https://github.com/jeandecian/deesseia/releases/tag/v1.4.0) - 2026-08-19
 
