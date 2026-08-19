@@ -4,7 +4,7 @@ Deesseia - Goddess of Data Science.
 A comprehensive data science library that streamlines the entire data science workflow from data loading to model deployment.
 """
 
-__version__ = "1.3.0"
+__version__ = "1.4.0"
 
 from deesseia.core.base.cleaner import BaseCleaner
 from deesseia.core.base.inspector import BaseDataInspector
@@ -15,6 +15,9 @@ from deesseia.core.feature import FeatureCreator
 from deesseia.core.inspector import DataInspector
 from deesseia.core.loader import DataLoader
 from deesseia.core.validator import Validator
+from deesseia.eda.descriptive import DescriptiveStats
+from deesseia.eda.distributions import Distributions
+from deesseia.eda.insights import Insights
 from deesseia.preprocess.encoder import Encoder
 from deesseia.preprocess.imputer import Imputer
 from deesseia.preprocess.scaler import Scaler
@@ -29,10 +32,13 @@ __all__ = [
     "Cleaner",
     "DataInspector",
     "DataLoader",
+    "DescriptiveStats",
+    "Distributions",
     "Encoder",
     "FakeDataGenerator",
     "FeatureCreator",
     "Imputer",
+    "Insights",
     "Scaler",
     "Splitter",
     "Validator",
