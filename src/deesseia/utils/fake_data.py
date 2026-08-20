@@ -70,7 +70,9 @@ class FakeDataGenerator:
             else:
                 raise ValueError(f"Unsupported distribution: {distribution}")
 
-        return pd.DataFrame(data)
+        df: pd.DataFrame = pd.DataFrame(data)
+
+        return df
 
     def generate_categorical(
         self,
@@ -99,7 +101,9 @@ class FakeDataGenerator:
                 self.rng.choice(categories) for _ in range(n_samples)
             ]
 
-        return pd.DataFrame(data)
+        df: pd.DataFrame = pd.DataFrame(data)
+
+        return df
 
     def generate_mixed(
         self,
@@ -145,4 +149,6 @@ class FakeDataGenerator:
         df: pd.DataFrame = self.generate_numeric(n_samples=n_rows, n_features=n_cols)
         mask: np.ndarray = self.rng.random(df.shape) < missing_probability
 
-        return pd.DataFrame(df.mask(mask))
+        masked_df: pd.DataFrame = pd.DataFrame(df.mask(mask))
+
+        return masked_df
