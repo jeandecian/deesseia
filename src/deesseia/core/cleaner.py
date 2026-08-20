@@ -1,9 +1,6 @@
 from __future__ import annotations
 
-from typing import cast
-
 import pandas as pd
-from pandas._typing import DropKeep
 
 from deesseia.core.base.cleaner import BaseCleaner
 
@@ -88,9 +85,7 @@ class Cleaner(BaseCleaner):
         """
 
         df: pd.DataFrame = self._df.copy()
-        result: pd.DataFrame = df.drop_duplicates(
-            subset=subset, keep=cast(DropKeep, keep)
-        )
+        result: pd.DataFrame = df.drop_duplicates(subset=subset, keep=keep)  # type: ignore
         self._df = result
 
         return result
