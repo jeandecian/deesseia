@@ -22,6 +22,7 @@ from deesseia.preprocess.encoder import Encoder
 from deesseia.preprocess.imputer import Imputer
 from deesseia.preprocess.scaler import Scaler
 from deesseia.preprocess.split import Splitter
+from deesseia.stats.correlation import Correlation
 from deesseia.utils.fake_data import FakeDataGenerator
 
 __all__ = [
@@ -30,6 +31,7 @@ __all__ = [
     "BaseDataLoader",
     "BaseValidator",
     "Cleaner",
+    "Correlation",
     "DataInspector",
     "DataLoader",
     "DescriptiveStats",
