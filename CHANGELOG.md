@@ -14,6 +14,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Fixed** None
 - **Security** None
 
+## [1.4.1](https://github.com/jeandecian/deesseia/releases/tag/v1.4.1) - 2026-08-19
+
+- **Added** `scipy>=1.10.0` to core dependencies
+- **Added** `scipy.*` to mypy overrides with `ignore_missing_imports = true`
+- **Added** `disable_error_code = ["import-untyped", "syntax"]` to mypy config for Python 3.12 compatibility
+- **Fixed** `scipy-stubs` now conditionally installed only on Python 3.12+ (package requires Python 3.12+)
+- **Fixed** `no-any-return` errors in `fake_data.py` and `encoder.py`
+- **Fixed** `numpy.*` mypy override with `follow_imports = "skip"` to avoid Python 3.12+ syntax issues
+- **Fixed** Mypy overrides syntax from `[tool.mypy.overrides]` to `[[tool.mypy.overrides]]` (array format required by mypy)
+
 ## [1.4.0](https://github.com/jeandecian/deesseia/releases/tag/v1.4.0) - 2026-08-19
 
 - **Added** `DescriptiveStats`: Summary statistics including mean, median, mode, std, quartiles, IQR, skew, and kurtosis

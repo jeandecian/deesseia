@@ -17,9 +17,7 @@ class Encoder:
     def _get_categorical_columns(self, df: pd.DataFrame) -> list[str]:
         """Get categorical columns (object, category, or string dtype)."""
 
-        return df.select_dtypes(
-            include=["object", "category", "string"]
-        ).columns.tolist()
+        return list(df.select_dtypes(include=["object", "category", "string"]).columns)
 
     def label_encode(
         self,

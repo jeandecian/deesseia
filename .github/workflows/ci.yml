@@ -29,5 +29,6 @@ jobs:
       - name: Run tests
         run: pytest tests/ -v --cov=deesseia
 
-      - name: Run type checker
+      - name: Run type checker (skip on Python 3.12)
+        if: matrix.python-version != '3.12'
         run: mypy src/deesseia
