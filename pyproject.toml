@@ -77,3 +77,7 @@ strict_optional = true
 module = ["numpy.*"]
 follow_imports = "skip"
 ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = ["scipy.*"]
+ignore_missing_imports = true
