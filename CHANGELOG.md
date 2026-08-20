@@ -14,6 +14,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Fixed** None
 - **Security** None
 
+## [1.4.2](https://github.com/jeandecian/deesseia/releases/tag/v1.4.2) - 2026-08-19
+
+- **Fixed** `float()` conversion for pandas scalar types in `DescriptiveStats.summary()` for Python 3.9 compatibility
+- **Fixed** `pandas._typing.DropKeep` import removed from `Cleaner.drop_duplicates()` for Python 3.9 compatibility
+
 ## [1.4.1](https://github.com/jeandecian/deesseia/releases/tag/v1.4.1) - 2026-08-19
 
 - **Added** `scipy>=1.10.0` to core dependencies
