@@ -13,6 +13,14 @@ class DescriptiveStats:
 
         self._params: dict[str, Any] = {}
 
+    def _to_float(self, value: Any) -> float | None:
+        """Convert a pandas scalar to float, handling None/NA."""
+
+        if pd.isna(value):
+            return None
+
+        return float(value)
+
     def summary(
         self,
         df: pd.DataFrame,
@@ -53,13 +61,13 @@ class DescriptiveStats:
                 "median": float(series.median()),
                 "mode": list(series.mode()),
                 "std": float(series.std()),
-                "var": float(series.var()),
-                "min": float(series.min()),
-                "max": float(series.max()),
-                "q1": float(series.quantile(0.25)),
-                "q2": float(series.quantile(0.50)),
-                "q3": float(series.quantile(0.75)),
-                "iqr": float(series.quantile(0.75) - series.quantile(0.25)),
+                "var": self._to_float(series.var()),
+                "min": self._to_float(series.min()),
+                "max": self._to_float(series.max()),
+                "q1": self._to_float(series.quantile(0.25)),
+                "q2": self._to_float(series.quantile(0.50)),
+                "q3": self._to_float(series.quantile(0.75)),
+                "iqr": self._to_float(series.quantile(0.75) - series.quantile(0.25)),
                 "skew": cast(float, series.skew()),
                 "kurtosis": cast(float, series.kurtosis()),
                 "missing_count": int(df[col].isna().sum()),
@@ -103,11 +111,11 @@ class DescriptiveStats:
                 continue
 
             summary[col] = {
-                "min": float(series.min()),
-                "q1": float(series.quantile(0.25)),
-                "median": float(series.median()),
-                "q3": float(series.quantile(0.75)),
-                "max": float(series.max()),
+                "min": self._to_float(series.min()),
+                "q1": self._to_float(series.quantile(0.25)),
+                "median": self._to_float(series.median()),
+                "q3": self._to_float(series.quantile(0.75)),
+                "max": self._to_float(series.max()),
             }
 
         return summary
