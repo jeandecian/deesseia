@@ -384,6 +384,31 @@ def sample_dataframe_clean() -> pd.DataFrame:
     )
 
 
+@pytest.fixture
+def sample_dataframe_high_correlation() -> pd.DataFrame:
+    """Return a sample DataFrame with high correlation between columns."""
+
+    np.random.seed(42)
+
+    df = pd.DataFrame(
+        {
+            "a": np.random.normal(0, 1, 100),
+            "b": np.random.normal(0, 1, 100),
+        }
+    )
+
+    df["c"] = df["a"] * 2 + np.random.normal(0, 0.1, 100)
+
+    return df
+
+
+@pytest.fixture
+def sample_dataframe_single_column() -> pd.DataFrame:
+    """Return a sample DataFrame with a single numeric column."""
+
+    return pd.DataFrame({"a": [1, 2, 3, 4, 5]})
+
+
 # ============================================================
 # Split fixtures
 # ============================================================
