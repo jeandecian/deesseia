@@ -410,6 +410,246 @@ def sample_dataframe_single_column() -> pd.DataFrame:
 
 
 # ============================================================
+# Stats fixtures
+# ============================================================
+
+
+@pytest.fixture
+def sample_data_ttest() -> np.ndarray:
+    """Return sample data for one-sample t-test and paired t-test (before)."""
+
+    data: np.ndarray = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+
+    return data
+
+
+@pytest.fixture
+def sample_data_paired_after() -> np.ndarray:
+    """Return sample data for paired t-test (after)."""
+
+    np.random.seed(42)
+
+    data: np.ndarray = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) + np.random.normal(
+        0, 0.5, 10
+    )
+
+    return data
+
+
+@pytest.fixture
+def sample_data_group1() -> np.ndarray:
+    """Return sample data for group 1 (independent t-test, ANOVA, Mann-Whitney)."""
+
+    np.random.seed(42)
+
+    data: np.ndarray = np.random.normal(0, 1, 30)
+
+    return data
+
+
+@pytest.fixture
+def sample_data_group2() -> np.ndarray:
+    """Return sample data for group 2 (independent t-test, ANOVA, Mann-Whitney)."""
+
+    np.random.seed(42)
+
+    data: np.ndarray = np.random.normal(0.5, 1, 30)
+
+    return data
+
+
+@pytest.fixture
+def sample_data_group3() -> np.ndarray:
+    """Return sample data for group 3 (ANOVA)."""
+
+    np.random.seed(42)
+
+    data: np.ndarray = np.random.normal(1, 1, 30)
+
+    return data
+
+
+@pytest.fixture
+def sample_data_group2_welch() -> np.ndarray:
+    """Return sample data for group 2 (Welch's t-test with different variance)."""
+
+    np.random.seed(42)
+
+    data: np.ndarray = np.random.normal(0.5, 2, 30)
+
+    return data
+
+
+@pytest.fixture
+def sample_data_chi_square() -> np.ndarray:
+    """Return observed contingency table for chi-square test."""
+
+    data: np.ndarray = np.array([[10, 20], [30, 40]])
+
+    return data
+
+
+@pytest.fixture
+def sample_data_single_observation() -> np.ndarray:
+    """Return a single observation for insufficient data tests."""
+
+    data: np.ndarray = np.array([1])
+
+    return data
+
+
+@pytest.fixture
+def sample_data_two_observations() -> np.ndarray:
+    """Return two observations for insufficient data tests."""
+
+    data: np.ndarray = np.array([2, 3])
+
+    return data
+
+
+@pytest.fixture
+def sample_data_three_observations() -> np.ndarray:
+    """Return three observations for mismatched length tests."""
+
+    data: np.ndarray = np.array([1, 2, 3])
+
+    return data
+
+
+@pytest.fixture
+def sample_data_two_observations_mismatch() -> np.ndarray:
+    """Return two observations for mismatched length tests."""
+
+    data: np.ndarray = np.array([4, 5])
+
+    return data
+
+
+# ============================================================
+# P-value interpretation test fixtures
+# ============================================================
+
+
+@pytest.fixture
+def sample_data_very_strong_evidence() -> np.ndarray:
+    """Return sample data with p < 0.001."""
+
+    np.random.seed(42)
+
+    data: np.ndarray = np.random.normal(1.5, 1.0, 100)
+
+    return data
+
+
+@pytest.fixture
+def sample_data_moderate_evidence() -> np.ndarray:
+    """Return sample data with 0.001 <= p < 0.01."""
+
+    np.random.seed(123)
+
+    data: np.ndarray = np.random.normal(0.8, 1.0, 20)
+
+    return data
+
+
+@pytest.fixture
+def sample_data_strong_evidence() -> np.ndarray:
+    """Return sample data with 0.01 <= p < 0.05."""
+
+    np.random.seed(42)
+
+    data: np.ndarray = np.random.normal(0.6, 1.0, 30)
+
+    return data
+
+
+@pytest.fixture
+def sample_data_no_evidence() -> np.ndarray:
+    """Return sample data with p >= 0.05."""
+
+    np.random.seed(42)
+
+    data: np.ndarray = np.random.normal(0.0, 1.0, 20)
+
+    return data
+
+
+@pytest.fixture
+def sample_group1_very_strong_evidence() -> np.ndarray:
+    """Return group 1 for independent t-test with p < 0.001."""
+
+    np.random.seed(42)
+
+    data: np.ndarray = np.random.normal(0, 1, 50)
+
+    return data
+
+
+@pytest.fixture
+def sample_group2_very_strong_evidence() -> np.ndarray:
+    """Return group 2 for independent t-test with p < 0.001."""
+
+    np.random.seed(42)
+
+    data: np.ndarray = np.random.normal(1.8, 1, 50)
+
+    return data
+
+
+@pytest.fixture
+def sample_group1_moderate_evidence() -> np.ndarray:
+    """Return group 1 for independent t-test with 0.001 <= p < 0.01."""
+
+    np.random.seed(999)
+
+    data: np.ndarray = np.random.normal(0, 1, 20)
+
+    return data
+
+
+@pytest.fixture
+def sample_group2_moderate_evidence() -> np.ndarray:
+    """Return group 2 for independent t-test with 0.001 <= p < 0.01."""
+
+    np.random.seed(999)
+
+    data: np.ndarray = np.random.normal(1.0, 1, 20)
+
+    return data
+
+
+@pytest.fixture
+def sample_chi_square_strong_evidence() -> np.ndarray:
+    """Return contingency table with p < 0.001 for chi-square test."""
+
+    data: np.ndarray = np.array([[50, 5], [5, 50]])
+
+    return data
+
+
+@pytest.fixture
+def sample_group1_mann_whitney_no_evidence() -> np.ndarray:
+    """Return group 1 for Mann-Whitney test with p >= 0.05."""
+
+    np.random.seed(42)
+
+    data: np.ndarray = np.random.normal(0, 1, 20)
+
+    return data
+
+
+@pytest.fixture
+def sample_group2_mann_whitney_no_evidence() -> np.ndarray:
+    """Return group 2 for Mann-Whitney test with p >= 0.05."""
+
+    np.random.seed(42)
+
+    data: np.ndarray = np.random.normal(0.3, 1, 20)
+
+    return data
+
+
+# ============================================================
 # Split fixtures
 # ============================================================
 
