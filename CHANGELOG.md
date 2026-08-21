@@ -14,6 +14,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Fixed** None
 - **Security** None
 
+## [1.5.0](https://github.com/jeandecian/deesseia/releases/tag/v1.5.0) - 2026-08-21
+
+- **Added** `Correlation`: Correlation analysis with Pearson, Spearman, and Kendall methods, high correlation detection, and heatmap visualization
+- **Added** `Hypothesis`: Hypothesis testing framework including t-tests (one-sample, independent, paired), ANOVA, chi-square, Mann-Whitney, and Wilcoxon tests
+- **Added** `Normality`: Normality tests including Shapiro-Wilk, Kolmogorov-Smirnov, and D'Agostino-Pearson
+- **Added** `MissingPattern`: Missing value pattern analysis including summary statistics, pattern matrix, missing correlation, pattern type detection (MCAR, MAR, MNAR), and comprehensive reporting
+
 ## [1.4.2](https://github.com/jeandecian/deesseia/releases/tag/v1.4.2) - 2026-08-19
 
 - **Fixed** `float()` conversion for pandas scalar types in `DescriptiveStats.summary()` for Python 3.9 compatibility
