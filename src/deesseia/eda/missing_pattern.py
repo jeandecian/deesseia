@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from typing import Any, cast
 
+import numpy as np
 import pandas as pd
 
 
@@ -233,8 +234,8 @@ class MissingPattern:
         if len(correlations) == 0:
             row_missing: pd.Series = self.missing_by_row(df)
 
-            variance: float = float(row_missing.var())
-            mean: float = float(row_missing.mean())
+            variance: float = float(np.float64(row_missing.var()))
+            mean: float = float(np.float64(row_missing.mean()))
 
             if variance < mean * 0.5:
                 pattern_type: str = "MCAR (Missing Completely At Random)"

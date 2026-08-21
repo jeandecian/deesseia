@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Fixed** None
 - **Security** None
 
+## [1.5.2](https://github.com/jeandecian/deesseia/releases/tag/v1.5.2) - 2026-08-21
+
+- **Fixed** Python 3.9 type compatibility issues in `MissingPattern._classify_missing_pattern()` by adding explicit type casting for pandas Series variance and mean calculations
+
 ## [1.5.1](https://github.com/jeandecian/deesseia/releases/tag/v1.5.1) - 2026-08-21
 
 - **Fixed** Type comparison issues in `MissingPattern._classify_missing_pattern()` by converting pandas Series values to float before comparison for Python 3.9 compatibility
