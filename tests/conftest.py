@@ -680,6 +680,82 @@ def sample_target_binary_for_split() -> pd.Series:
 
 
 # ============================================================
+# Normality test fixtures
+# ============================================================
+
+
+@pytest.fixture
+def sample_data_normal() -> np.ndarray:
+    """Return normally distributed sample data."""
+
+    np.random.seed(42)
+
+    data: np.ndarray = np.random.normal(0, 1, 100)
+
+    return data
+
+
+@pytest.fixture
+def sample_data_non_normal() -> np.ndarray:
+    """Return non-normally distributed sample data."""
+
+    np.random.seed(42)
+
+    data: np.ndarray = np.random.exponential(1, 100)
+
+    return data
+
+
+@pytest.fixture
+def sample_data_uniform() -> np.ndarray:
+    """Return uniformly distributed sample data."""
+
+    np.random.seed(42)
+
+    data: np.ndarray = np.random.uniform(0, 1, 100)
+
+    return data
+
+
+@pytest.fixture
+def sample_data_exponential() -> np.ndarray:
+    """Return exponentially distributed sample data."""
+
+    np.random.seed(42)
+
+    data: np.ndarray = np.random.exponential(1, 100)
+
+    return data
+
+
+@pytest.fixture
+def sample_data_shapiro_insufficient() -> np.ndarray:
+    """Return sample data with insufficient observations for Shapiro-Wilk test."""
+
+    data: np.ndarray = np.array([1, 2])
+
+    return data
+
+
+@pytest.fixture
+def sample_data_ks_insufficient() -> np.ndarray:
+    """Return sample data with insufficient observations for Kolmogorov-Smirnov test."""
+
+    data: np.ndarray = np.array([1])
+
+    return data
+
+
+@pytest.fixture
+def sample_data_dagostino_insufficient() -> np.ndarray:
+    """Return sample data with insufficient observations for D'Agostino-Pearson test."""
+
+    data: np.ndarray = np.array([1, 2, 3, 4, 5, 6, 7])
+
+    return data
+
+
+# ============================================================
 # Utility fixtures
 # ============================================================
 
