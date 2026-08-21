@@ -113,8 +113,12 @@ class Correlation:
         figsize: tuple[int, int] = (10, 8),
         annot: bool = True,
         cmap: str = "RdBu_r",
+        show: bool = True,
+        save_path: str | None = None,
+        return_fig: bool = False,
+        dpi: int = 300,
         **kwargs: Any,
-    ) -> None:
+    ) -> Any:
         """Plot correlation matrix as a heatmap.
 
         Args:
@@ -124,7 +128,15 @@ class Correlation:
             figsize: Figure size (width, height).
             annot: Whether to annotate correlation values.
             cmap: Colormap for the heatmap.
+            show: Whether to display the plot.
+            save_path: File path to save the figure (e.g., 'heatmap.png').
+            return_fig: Whether to return the figure object.
+            dpi: DPI for saving the figure.
             **kwargs: Additional arguments passed to seaborn.heatmap.
+
+        Returns:
+            If return_fig is True, returns the matplotlib figure object.
+            Otherwise, returns None.
         """
 
         import matplotlib.pyplot as plt
@@ -136,9 +148,10 @@ class Correlation:
 
         if corr_matrix.empty:
             print("No numeric columns found for correlation heatmap.")
-            return
+            return None
 
-        plt.figure(figsize=figsize)  # type: ignore
+        fig, ax = plt.subplots(figsize=figsize)  # type: ignore
+
         sns.heatmap(  # type: ignore
             corr_matrix,
             annot=annot,
@@ -147,8 +160,23 @@ class Correlation:
             square=True,
             linewidths=0.5,
             cbar_kws={"shrink": 0.8},
+            ax=ax,
             **kwargs,
         )
-        plt.title(f"Correlation Matrix ({method.capitalize()})", fontsize=14)  # type: ignore
+
+        ax.set_title(f"Correlation Matrix ({method.capitalize()})", fontsize=14)  # type: ignore
+
         plt.tight_layout()
-        plt.show()  # type: ignore
+
+        if save_path:
+            plt.savefig(save_path, dpi=dpi, bbox_inches="tight")  # type: ignore
+
+        if show:
+            plt.show()  # type: ignore
+        else:
+            plt.close()
+
+        if return_fig:
+            return fig
+
+        return None
