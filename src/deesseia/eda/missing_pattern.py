@@ -169,7 +169,7 @@ class MissingPattern:
 
         complete_cases: pd.Series = ~df[other_col].isna()
 
-        if complete_cases.sum() <= 1:
+        if int(complete_cases.sum()) <= 1:
             return None
 
         corr: float = missing_indicator[complete_cases].corr(
@@ -233,7 +233,10 @@ class MissingPattern:
         if len(correlations) == 0:
             row_missing: pd.Series = self.missing_by_row(df)
 
-            if row_missing.var() < row_missing.mean() * 0.5:
+            variance: float = float(row_missing.var())
+            mean: float = float(row_missing.mean())
+
+            if variance < mean * 0.5:
                 pattern_type: str = "MCAR (Missing Completely At Random)"
                 evidence: str = (
                     "Missingness appears random with no strong correlations to observed values."
@@ -267,7 +270,7 @@ class MissingPattern:
         if df.empty:
             raise ValueError(self.EMPTY_DATAFRAME_ERROR)
 
-        if df.isna().sum().sum() == 0:
+        if int(df.isna().sum().sum()) == 0:
             return {
                 "pattern_type": "No missing values",
                 "evidence": "No missing values found in the dataset.",
@@ -323,5 +326,5 @@ class MissingPattern:
             "pattern_type": pattern_type,
             "top_missing_rows": top_missing_rows,
             "top_missing_columns": top_missing_cols,
-            "has_missing": summary["total_missing"] > 0,
+            "has_missing": bool(summary["total_missing"] > 0),
         }
