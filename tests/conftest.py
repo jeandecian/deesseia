@@ -756,6 +756,64 @@ def sample_data_dagostino_insufficient() -> np.ndarray:
 
 
 # ============================================================
+# Missing pattern test fixtures
+# ============================================================
+
+
+@pytest.fixture
+def sample_dataframe_mcar_low_variance() -> pd.DataFrame:
+    """Return a DataFrame with MCAR missingness spread evenly (low variance)."""
+
+    np.random.seed(42)
+
+    df: pd.DataFrame = pd.DataFrame(
+        {
+            "a": np.random.normal(0, 1, 100),
+            "b": np.random.normal(0, 1, 100),
+            "c": np.random.normal(0, 1, 100),
+        }
+    )
+
+    missing_indices: list[int] = [10, 20, 30, 40, 50, 60, 70, 80, 90, 95]
+    df.loc[missing_indices, "a"] = np.nan
+
+    return df
+
+
+@pytest.fixture
+def sample_dataframe_mcar_weak_evidence() -> pd.DataFrame:
+    """Return a DataFrame with MCAR missingness with higher variance."""
+
+    np.random.seed(42)
+
+    df: pd.DataFrame = pd.DataFrame(
+        {
+            "a": np.random.normal(0, 1, 50),
+            "b": np.random.normal(0, 1, 50),
+            "c": np.random.normal(0, 1, 50),
+        }
+    )
+
+    df.loc[0:19, "a"] = np.nan
+    df.loc[30:39, "b"] = np.nan
+
+    return df
+
+
+@pytest.fixture
+def sample_dataframe_single_complete_case() -> pd.DataFrame:
+    """Return a DataFrame where all columns have only 1 complete case."""
+
+    return pd.DataFrame(
+        {
+            "a": [1, np.nan, np.nan, np.nan, np.nan, np.nan],
+            "b": [2, np.nan, np.nan, np.nan, np.nan, np.nan],
+            "c": [3, np.nan, np.nan, np.nan, np.nan, np.nan],
+        }
+    )
+
+
+# ============================================================
 # Utility fixtures
 # ============================================================
 
