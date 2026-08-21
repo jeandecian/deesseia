@@ -41,7 +41,9 @@ class Correlation:
             ]
 
         if not cols:
-            return pd.DataFrame()
+            empty_df: pd.DataFrame = pd.DataFrame()
+
+            return empty_df
 
         corr_matrix: pd.DataFrame = df[cols].corr(method=method)
 
