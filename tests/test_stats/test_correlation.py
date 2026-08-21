@@ -1,3 +1,6 @@
+from pathlib import Path
+from typing import Any
+
 import pandas as pd
 import pytest  # noqa: F401 # type: ignore[import-unused]
 
@@ -127,11 +130,74 @@ class TestCorrelation:
 
         assert result == []
 
-    def test_plot_heatmap(self, sample_dataframe: pd.DataFrame) -> None:
-        """Test heatmap plotting (just ensure it runs)."""
+    def test_plot_heatmap_show(self, sample_dataframe: pd.DataFrame) -> None:
+        """Test heatmap plotting with show=True (default)."""
 
         corr: Correlation = Correlation()
-        corr.plot_heatmap(sample_dataframe, figsize=(4, 3))
+        result: Any = corr.plot_heatmap(sample_dataframe, figsize=(4, 3), show=True)
+
+        assert result is None
+
+    def test_plot_heatmap_no_show(self, sample_dataframe: pd.DataFrame) -> None:
+        """Test heatmap plotting with show=False (should not display)."""
+
+        corr: Correlation = Correlation()
+        result: Any = corr.plot_heatmap(sample_dataframe, figsize=(4, 3), show=False)
+
+        assert result is None
+
+    def test_plot_heatmap_save(
+        self, sample_dataframe: pd.DataFrame, tmp_path: Path
+    ) -> None:
+        """Test heatmap plotting with save_path."""
+
+        import os
+
+        save_path: Path = tmp_path / "heatmap.png"
+
+        corr: Correlation = Correlation()
+        result: Any = corr.plot_heatmap(
+            sample_dataframe,
+            figsize=(4, 3),
+            show=False,
+            save_path=str(save_path),
+        )
+
+        assert result is None
+        assert os.path.exists(save_path)
+
+    def test_plot_heatmap_return_fig(self, sample_dataframe: pd.DataFrame) -> None:
+        """Test heatmap plotting with return_fig=True."""
+
+        corr: Correlation = Correlation()
+        result: Any = corr.plot_heatmap(
+            sample_dataframe, figsize=(4, 3), show=False, return_fig=True
+        )
+
+        assert result is not None
+        assert hasattr(result, "savefig")
+
+    def test_plot_heatmap_save_and_return(
+        self, sample_dataframe: pd.DataFrame, tmp_path: Path
+    ) -> None:
+        """Test heatmap plotting with both save_path and return_fig."""
+
+        import os
+
+        save_path: Path = tmp_path / "heatmap_return.png"
+
+        corr: Correlation = Correlation()
+        result: Any = corr.plot_heatmap(
+            sample_dataframe,
+            figsize=(4, 3),
+            show=False,
+            save_path=str(save_path),
+            return_fig=True,
+        )
+
+        assert result is not None
+        assert hasattr(result, "savefig")
+        assert os.path.exists(save_path)
 
     def test_plot_heatmap_no_numeric(
         self, sample_dataframe_non_numeric: pd.DataFrame
@@ -139,16 +205,59 @@ class TestCorrelation:
         """Test heatmap with no numeric columns."""
 
         corr: Correlation = Correlation()
-        corr.plot_heatmap(sample_dataframe_non_numeric)
+        result: Any = corr.plot_heatmap(sample_dataframe_non_numeric, show=False)
+
+        assert result is None
 
     def test_plot_heatmap_with_columns(self, sample_dataframe: pd.DataFrame) -> None:
         """Test heatmap with specific columns."""
 
         corr: Correlation = Correlation()
-        corr.plot_heatmap(sample_dataframe, columns=["age", "salary"], figsize=(4, 3))
+        result: Any = corr.plot_heatmap(
+            sample_dataframe,
+            columns=["age", "salary"],
+            figsize=(4, 3),
+            show=False,
+        )
+
+        assert result is None
 
     def test_plot_heatmap_with_method(self, sample_dataframe: pd.DataFrame) -> None:
         """Test heatmap with different correlation method."""
 
         corr: Correlation = Correlation()
-        corr.plot_heatmap(sample_dataframe, method="spearman", figsize=(4, 3))
+        result: Any = corr.plot_heatmap(
+            sample_dataframe,
+            method="spearman",
+            figsize=(4, 3),
+            show=False,
+        )
+
+        assert result is None
+
+    def test_plot_heatmap_with_custom_cmap(
+        self, sample_dataframe: pd.DataFrame
+    ) -> None:
+        """Test heatmap with custom colormap."""
+
+        corr: Correlation = Correlation()
+        result: Any = corr.plot_heatmap(
+            sample_dataframe,
+            figsize=(4, 3),
+            cmap="coolwarm",
+            show=False,
+        )
+
+        assert result is None
+
+    def test_plot_heatmap_without_annot(self, sample_dataframe: pd.DataFrame) -> None:
+        """Test heatmap without annotations."""
+
+        corr: Correlation = Correlation()
+        result: Any = corr.plot_heatmap(
+            sample_dataframe,
+            figsize=(4, 3),
+            annot=False,
+            show=False,
+        )
+        assert result is None
