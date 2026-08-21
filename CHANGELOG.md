@@ -14,6 +14,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Fixed** None
 - **Security** None
 
+## [1.5.1](https://github.com/jeandecian/deesseia/releases/tag/v1.5.1) - 2026-08-21
+
+- **Fixed** Type comparison issues in `MissingPattern._classify_missing_pattern()` by converting pandas Series values to float before comparison for Python 3.9 compatibility
+- **Fixed** Type comparison issues in `MissingPattern._check_correlation()` by converting `complete_cases.sum()` to int before comparison for Python 3.9 compatibility
+
 ## [1.5.0](https://github.com/jeandecian/deesseia/releases/tag/v1.5.0) - 2026-08-21
 
 - **Added** `Correlation`: Correlation analysis with Pearson, Spearman, and Kendall methods, high correlation detection, and heatmap visualization
