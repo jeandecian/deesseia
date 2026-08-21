@@ -24,6 +24,7 @@ from deesseia.preprocess.scaler import Scaler
 from deesseia.preprocess.split import Splitter
 from deesseia.stats.correlation import Correlation
 from deesseia.stats.hypothesis import Hypothesis
+from deesseia.stats.normality import Normality
 from deesseia.utils.fake_data import FakeDataGenerator
 
 __all__ = [
@@ -43,6 +44,7 @@ __all__ = [
     "Hypothesis",
     "Imputer",
     "Insights",
+    "Normality",
     "Scaler",
     "Splitter",
     "Validator",
