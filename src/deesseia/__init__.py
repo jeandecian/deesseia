@@ -18,6 +18,7 @@ from deesseia.core.validator import Validator
 from deesseia.eda.descriptive import DescriptiveStats
 from deesseia.eda.distributions import Distributions
 from deesseia.eda.insights import Insights
+from deesseia.eda.missing_pattern import MissingPattern
 from deesseia.preprocess.encoder import Encoder
 from deesseia.preprocess.imputer import Imputer
 from deesseia.preprocess.scaler import Scaler
@@ -44,6 +45,7 @@ __all__ = [
     "Hypothesis",
     "Imputer",
     "Insights",
+    "MissingPattern",
     "Normality",
     "Scaler",
     "Splitter",
